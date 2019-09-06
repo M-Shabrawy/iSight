@@ -226,7 +226,46 @@ function update-iSightIocs
 
 function Create-ListJSON
 {
-
+	param(
+		[ValidateSet("Application","Classification","CommonEvent","Host","Location","MsgSource","MsgSourceType","MPERule","Network","User","GeneralValue","Entity","RootEntity","IP" "IPRange","Identity")]
+		[string]$listType,
+		[ValidateSet()]
+		[string[]]$useContext
+	)
+	$list = @()
+	$list += [pscustomobject]{
+		{
+    "name" = "<string>"
+    "listType" = $listType
+    "autoImportOption": {
+        "enabled": "<boolean>",
+        "usePatterns": "<boolean>",
+        "replaceExisting": "<boolean>"
+    },
+    "readAccess": "<string>",
+    "writeAccess": "<string>",
+    "entityName": "<string>",
+    "restrictedRead": "<boolean>",
+    "needToNotify": "<boolean>",
+    "doesExpire": "<boolean>",
+    "status": "<string>",
+    "shortDescription": "<string>",
+    "longDescription": "<string>",
+    "useContext": [
+        "<string>",
+        "<string>"
+    ],
+    "importFileName": "<string>",
+    "id": "<integer>",
+    "guid": "<string>",
+    "dateCreated": "<dateTime>",
+    "dateUpdated": "<dateTime>",
+    "revisitDate": "<dateTime>",
+    "entryCount": "<integer>",
+    "timeToLiveSeconds": "<integer>",
+    "owner": "<integer>"
+}
+	}
 }
 
 $listImportConfig = @{"Folder"=$listImportFolder; "Prefix"=$listFilePrefix; "Postfix"=$listFilePostfix}
